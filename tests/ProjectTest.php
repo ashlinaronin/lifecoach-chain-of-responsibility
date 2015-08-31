@@ -41,6 +41,24 @@
 
         }
 
+        function test_save()
+        {
+            //Arrange
+            $name = "Build a shed";
+            $motivation = "have storage";
+            $due_date = "2015-09-09";
+            $priority = 1;
+            $test_project = new Project($name,$motivation,$due_date,$priority);
+
+            //Act
+            $test_project->save();
+
+            //Assert
+            $result = Project::getAll();
+            $this->assertEquals([$test_project], $result);
+
+        }
+
 
 
 

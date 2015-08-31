@@ -60,9 +60,18 @@
         }
 
 
+        // Basic DB altering methods
 
-
-
+        function save()
+        {
+            $GLOBALS['DB']->exec("INSERT INTO projects (name,motivation,due_date,priority) VALUES(
+                '{$this->getName()}',
+                '{$this->getMotivation()}',
+                '{$this->getDueDate()}',
+                {$this->getPriority()}
+            );");
+            $this->id = $GLOBALS['DB']->lastInsertId();
+        }
 
 
 
@@ -74,6 +83,24 @@
         {
             $GLOBALS['DB']->exec("DELETE FROM projects");
 
+        }
+
+        static function getAll()
+        {
+            $returned_projects = $GLOBALS['DB']->query("SELECT * FROM projects");
+
+            $projects = array();
+
+            foreach($returned_projects as $project){
+                $name = $project['name'];
+                $motivation = $project['motivation'];
+                $due_date = $project['due_date'];
+                $priority = $project['priority'];
+                $id = (int)$project['id'];
+                $new_project = new Project($name,$motivation,$due_date,$priority,$id);
+                array_push($projects, $new_project);
+            }
+            return $projects;
         }
 
 
