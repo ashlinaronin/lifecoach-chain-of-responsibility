@@ -6,7 +6,8 @@
     // CoR stuff
     require_once __DIR__."/../src/CoR/Client.php";
     require_once __DIR__."/../src/CoR/Handler.php";
-    require_once __DIR__."/../src/CoR/Request.php";
+    require_once __DIR__."/../src/CoR/ChainRequest.php";
+    require_once __DIR__."/../src/CoR/Page.php";
     require_once __DIR__."/../src/CoR/WhatQuestionHandler.php";
     require_once __DIR__."/../src/CoR/WhyQuestionHandler.php";
     require_once __DIR__."/../src/CoR/MostBasicStepHandler.php";
@@ -37,15 +38,12 @@
         // which will pass on the request to the appropriate handler
         // using the chain of responsibility.
 
-
-        $new_request = new Request($_POST['query']);
+        $new_request = new ChainRequest($_POST['query']);
         $new_client = new Client($new_request);
-        $returned_text = $new_client->processRequests();
+        $page = $new_client->processRequests();
 
         // Render data returned from the CoR
-        return $app['twig']->render('question.html.twig', array(
-            'question' => $returned_text
-        ));
+        return $app['twig']->render($page->getTemplateUrl(), $page->getDataForTwig());
     });
 
     // Coach route for new project

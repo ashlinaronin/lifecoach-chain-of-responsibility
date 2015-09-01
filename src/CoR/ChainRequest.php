@@ -1,6 +1,7 @@
 <?php
-    // A Request object that just holds the text of a request
-    class Request
+    // A Query object that just holds the text of a query
+    // changed the name because Request is a reserved word in Symfony
+    class ChainRequest
     {
         private $text;
 

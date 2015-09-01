@@ -5,7 +5,8 @@
     */
     require_once __DIR__."/../src/CoR/Client.php";
     require_once __DIR__."/../src/CoR/Handler.php";
-    require_once __DIR__."/../src/CoR/Request.php";
+    require_once __DIR__."/../src/CoR/ChainRequest.php";
+    require_once __DIR__."/../src/CoR/Page.php";
     require_once __DIR__."/../src/CoR/WhatQuestionHandler.php";
     require_once __DIR__."/../src/CoR/WhyQuestionHandler.php";
     require_once __DIR__."/../src/CoR/MostBasicStepHandler.php";
@@ -23,11 +24,12 @@
         //     Habit::deleteAll();
         // }
 
+        
         function test_processRequestsWhat()
         {
             //Arrange
             $query = "what";
-            $new_request = new Request($query);
+            $new_request = new ChainRequest($query);
             $new_client = new Client($new_request);
 
             //Act
@@ -35,14 +37,14 @@
 
             //Assert
             $what_text = "What is your new project?";
-            $this->assertEquals($what_text, $result);
+            $this->assertEquals($what_text, $result->getDataForTwig()['question']);
         }
 
         function test_processRequestsWhy()
         {
             //Arrange
             $query = "why";
-            $new_request = new Request($query);
+            $new_request = new ChainRequest($query);
             $new_client = new Client($new_request);
 
             //Act
@@ -57,7 +59,7 @@
         {
             //Arrange
             $query = "mostbasicstep";
-            $new_request = new Request($query);
+            $new_request = new ChainRequest($query);
             $new_client = new Client($new_request);
 
             //Act
