@@ -37,7 +37,7 @@
 
             //Assert
             $what_text = "What is your new project?";
-            $this->assertEquals($what_text, $result->getDataForTwig()['question']);
+            $this->assertEquals($what_text, $result->getData()['question']);
         }
 
         function test_processRequestsWhy()
@@ -52,7 +52,7 @@
 
             //Assert
             $why_text = "Why do you want to work on this project?";
-            $this->assertEquals($why_text, $result->getDataForTwig()['question']);
+            $this->assertEquals($why_text, $result->getData()['question']);
         }
 
         function test_processRequestsMBS()
@@ -67,7 +67,7 @@
 
             //Assert
             $mbs_text = "What is the most basic step to complete?";
-            $this->assertEquals($mbs_text, $result->getDataForTwig()['question']);
+            $this->assertEquals($mbs_text, $result->getData()['question']);
         }
 
 

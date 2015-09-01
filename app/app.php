@@ -37,13 +37,14 @@
         // Make the new Client with the data from the form,
         // which will pass on the request to the appropriate handler
         // using the chain of responsibility.
-
         $new_request = new ChainRequest($_POST['query']);
         $new_client = new Client($new_request);
+
+        // The Handlers will each return a Page object
         $page = $new_client->processRequests();
 
-        // Render data returned from the CoR
-        return $app['twig']->render($page->getTemplateUrl(), $page->getDataForTwig());
+        // Render data returned from the CoR as a Page object
+        return $app['twig']->render($page->getTemplateUrl(), $page->getData());
     });
 
     // Coach route for new project

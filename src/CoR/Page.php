@@ -1,22 +1,22 @@
 <?php
     // A Page object holds the details of which twig template to display
     // and what data to send to that template
-    
+
     class Page
     {
         private $template_url;
-        private $data_for_twig;
+        private $data;
 
 
-        public function __construct($template_url, $data_for_twig)
+        public function __construct($template_url, $data)
         {
             $this->template_url = $template_url;
-            $this->data_for_twig = $data_for_twig;
+            $this->data = $data;
         }
 
-        public function getDataForTwig()
+        public function getData()
         {
-            return $this->data_for_twig;
+            return $this->data;
         }
 
         public function getTemplateUrl()
@@ -24,9 +24,9 @@
             return $this->template_url;
         }
 
-        public function setDataForTwig($new_data)
+        public function setData($new_data)
         {
-            $this->data_for_twig = $new_data;
+            $this->data = $new_data;
         }
 
         public function setTemplateUrl($new_url)
