@@ -33,31 +33,31 @@
         return $app['twig']->render('index.html.twig');
     });
 
-    $app->post("/question_handler", function() use ($app) {
+    $app->post("/coach_handler", function() use ($app) {
         // Make the new Client with the data from the form,
         // which will pass on the request to the appropriate handler
         // using the chain of responsibility.
         $new_request = new ChainRequest($_POST['query']);
         $new_client = new Client($new_request);
 
-        // The Handlers will each return a Page object
+        // Handler will return a Page object
         $page = $new_client->processRequests();
 
         // Render data returned from the CoR as a Page object
         return $app['twig']->render($page->getTemplateUrl(), $page->getData());
     });
 
-    // Coach route for new project
-    $app->get("/coach/new_habit/{page_id}", function($page_id) use ($app) {
-
-        return "Placeholder route for page {$page_id} in new project coach flow.";
-    });
-
-    // Coach route for existing project
-    $app->get("/coach/habit/{page_id}", function($page_id) use ($app) {
-
-        return "Placeholder route for page {$page_id} in existing project coach flow.";
-    });
+    // // Coach route for new project
+    // $app->get("/coach/new_habit/{page_id}", function($page_id) use ($app) {
+    //
+    //     return "Placeholder route for page {$page_id} in new project coach flow.";
+    // });
+    //
+    // // Coach route for existing project
+    // $app->get("/coach/habit/{page_id}", function($page_id) use ($app) {
+    //
+    //     return "Placeholder route for page {$page_id} in existing project coach flow.";
+    // });
 
     return $app;
 ?>
