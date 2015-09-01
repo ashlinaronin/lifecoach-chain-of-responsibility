@@ -23,12 +23,13 @@
             $what->setSuccessor($why);
             $why->setSuccessor($mostBasicStep);
 
-            // Generate and process load requests
-            $new_request = new Request($this->getCurrentRequest());
+            // Right now don't make a new Request object, need to do it when calling a client
+            // // Generate and process load requests
+            // $new_request = new Request($this->getCurrentRequest());
 
             // Call first concrete Handler
             // It will recursively call other Handlers as necessary
-            $request_return = $what->handleRequest($new_request);
+            $request_return = $what->handleRequest($this->getCurrentRequest());
 
             // Get data out of the Handler
             return $request_return;

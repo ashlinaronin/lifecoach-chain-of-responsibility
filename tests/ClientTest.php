@@ -27,7 +27,8 @@
         {
             //Arrange
             $query = "what";
-            $new_client = new Client($query);
+            $new_request = new Request($query);
+            $new_client = new Client($new_request);
 
             //Act
             $result = $new_client->processRequests();
@@ -41,7 +42,8 @@
         {
             //Arrange
             $query = "why";
-            $new_client = new Client($query);
+            $new_request = new Request($query);
+            $new_client = new Client($new_request);
 
             //Act
             $result = $new_client->processRequests();
@@ -55,7 +57,8 @@
         {
             //Arrange
             $query = "mostbasicstep";
-            $new_client = new Client($query);
+            $new_request = new Request($query);
+            $new_client = new Client($new_request);
 
             //Act
             $result = $new_client->processRequests();

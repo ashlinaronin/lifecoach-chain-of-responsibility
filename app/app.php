@@ -36,7 +36,10 @@
         // Make the new Client with the data from the form,
         // which will pass on the request to the appropriate handler
         // using the chain of responsibility.
-        $new_client = new Client($_POST['query']);
+
+
+        $new_request = new Request($_POST['query']);
+        $new_client = new Client($new_request);
         $returned_text = $new_client->processRequests();
 
         // Render data returned from the CoR
