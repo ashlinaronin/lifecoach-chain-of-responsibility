@@ -1,5 +1,8 @@
 <?php
-    class Client
+    // This Client manages the chain of handlers involved in the coach workflow
+    // for creating a new Project.
+
+    class NewProjectClient
     {
         private $current_request;
 
@@ -18,21 +21,17 @@
         {
             // Instantiate Concrete Handlers and set successors for each except the last one
 
-            // Trying with abstracted simple QA
-            // $what_q = "What is your new project's name?";
-            // $what = new SimpleQAHandler($what_q, 'name');
-            //
-            // $why_q = "Why do you want to work on it?";
-            // $why = new SimpleQAHandler($why_q, 'motivation');
-            //
-            // $mbs_q = "What is the most basic step?";
-            // $mbs = new SimpleQAHandler($mbs_q, 'step1');
+            $what = new WhatProjectQuestionHandler();
+            $motivation = new MotivationQuestionHandler();
 
-            $what = new WhatQuestionHandler();
-            $why = new WhyQuestionHandler();
-            $mbs = new MostBasicStepHandler();
+            // handle dumps
+            $prereq = new PrerequisiteHandler();
 
+            // Basic step handler may run a few times as steps are created
+            $basicstep = new BasicStepHandler();
 
+            $due = new DueQuestionHandler();
+            $feedback = new ProjectFeedbackHandler();
 
             // Set up chain of successors
             $what->setSuccessor($why);
