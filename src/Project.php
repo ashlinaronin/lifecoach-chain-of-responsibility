@@ -16,7 +16,6 @@
             $this->due_date = $due_date;
             $this->priority = $priority;
             $this->id = (int)$id;
-
         }
 
         function setName ($new_name)
@@ -59,6 +58,11 @@
             return $this->priority;
         }
 
+        function getId()
+        {
+            return $this->id; 
+        }
+
 
         // Basic DB altering methods
 
@@ -73,17 +77,29 @@
             $this->id = $GLOBALS['DB']->lastInsertId();
         }
 
-
-
-
-        // STATIC Methods
-
-
-        static function deleteAll()
+        function delete()
         {
-            $GLOBALS['DB']->exec("DELETE FROM projects");
-
+            $GLOBALS['DB']->exec("DELETE FROM projects WHERE id = {$this->getId()};");
         }
+
+
+
+
+        // STATIC Methods 
+
+        static function find($search_id)
+        {
+            $found_project = null;
+            $projects = Project::getAll();
+
+            foreach($projects as $project) {
+                if($project->getId() == $search_id ) {
+                    $found_project = $project;
+                }
+            }
+            return $found_project; 
+        }
+
 
         static function getAll()
         {
@@ -103,6 +119,12 @@
             return $projects;
         }
 
+
+        static function deleteAll()
+        {
+            $GLOBALS['DB']->exec("DELETE FROM projects");
+            // steps
+        }
 
     }
 
