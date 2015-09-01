@@ -24,7 +24,7 @@
         //     Habit::deleteAll();
         // }
 
-        
+
         function test_processRequestsWhat()
         {
             //Arrange
@@ -52,7 +52,7 @@
 
             //Assert
             $why_text = "Why do you want to work on this project?";
-            $this->assertEquals($why_text, $result);
+            $this->assertEquals($why_text, $result->getDataForTwig()['question']);
         }
 
         function test_processRequestsMBS()
@@ -67,7 +67,7 @@
 
             //Assert
             $mbs_text = "What is the most basic step to complete?";
-            $this->assertEquals($mbs_text, $result);
+            $this->assertEquals($mbs_text, $result->getDataForTwig()['question']);
         }
 
 

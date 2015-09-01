@@ -15,8 +15,15 @@ Will print out a question for now
         public function handleRequest($request)
         {
             if ($request->getText() == "why") {
-                $data = "Why do you want to work on this project?";
-                return $data;
+                $question = "Why do you want to work on this project?";
+
+                // Make a new Page object to return the Twig template url
+                // and data to pass to it
+                $template_url = "question.html.twig";
+                $data_for_twig = array('question' => $question);
+                $new_page = new Page($template_url, $data_for_twig);
+
+                return $new_page;
 
             } else if ($this->successor != null) {
                 // We need to recursively return value from the next handler
