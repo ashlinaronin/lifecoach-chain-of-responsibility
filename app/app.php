@@ -38,14 +38,14 @@
         // which will pass on the request to the appropriate handler
         // using the chain of responsibility.
         $new_client = new Client($_POST['query']);
-        $question_text = $new_client->processRequests();
+        $returned_text = $new_client->processRequests();
 
 
         // How do we get data out of the What/Why/MBSHandler into Silex/Twig?
 
 
         return $app['twig']->render('question.html.twig', array(
-            'question' => $question_text
+            'question' => $returned_text
         ));
     });
 
