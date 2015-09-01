@@ -1,21 +1,3 @@
-<html>
-    <head>
-
-        <title>Testing Question Handler</title>
-    </head>
-    <body>
-        <form action="/question_handler" method="post">
-        Select the question you wanna handle.<br/>
-            <p/>
-            <input type="radio" name="query" value="what" />
-            &nbsp; What<br/>
-            <input type="radio" name="query" value="why" />
-            &nbsp; Why<br/>
-            <input type="radio" name="query" value="mostbasicstep" />
-            &nbsp; Most Basic Step<br/>
-            <p/>
-            <button type="submit">Submit</button>
-        </form>
-
-    </body>
-</html>
+{% include 'partials/header.html.twig' %}
+{% include 'partials/form.html.twig' %}
+{% include 'partials/header.html.twig' %}
