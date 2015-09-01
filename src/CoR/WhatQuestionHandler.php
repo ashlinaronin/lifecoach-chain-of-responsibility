@@ -12,11 +12,6 @@ Will print out a question for now
             $this->successor = $next_handler;
         }
 
-        public function getSuccessor()
-        {
-            var_dump($this->successor);
-        }
-
         public function handleRequest($request)
         {
             if ($request->getText() == "what") {

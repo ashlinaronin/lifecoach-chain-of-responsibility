@@ -23,15 +23,15 @@
             $What->setSuccessor($Why);
             $Why->setSuccessor($MostBasicStep);
 
-
             // Generate and process load requests
             $new_request = new Request($this->getCurrentRequest());
 
             // Call first concrete Handler
-            $question_text = $What->handleRequest($new_request);
+            // It will recursively call other Handlers as necessary
+            $request_return = $What->handleRequest($new_request);
 
             // Get data out of the Handler
-            return $question_text;
+            return $request_return;
         }
     }
  ?>
