@@ -20,14 +20,12 @@ Will print out a question for now
         public function handleRequest($request)
         {
             if ($request->getText() == "mostbasicstep") {
-                echo "Inside handleRequest in MBSHandler<br>";
-
-                // echo "What is the most basic step to complete?";
                 $data = "What is the most basic step to complete?";
                 return $data;
 
             } else if ($this->successor != null) {
-                echo "MostBasicStepHandler handing off request</br>";
+                // We need to recursively return value from the next handler
+                // in order to get data back to Silex.
                 return $this->successor->handleRequest($request);
             }
         }

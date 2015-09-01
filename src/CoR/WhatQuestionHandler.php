@@ -20,13 +20,13 @@ Will print out a question for now
         public function handleRequest($request)
         {
             if ($request->getText() == "what") {
-                // echo "What is your new project?";
                 $data = "What is your new project?";
                 return $data;
 
             } else if ($this->successor != null) {
-                echo "WhatQuestionHandler handing off request</br>";
-                $this->successor->handleRequest($request);
+                // We need to recursively return value from the next handler
+                // in order to get data back to Silex.
+                return $this->successor->handleRequest($request);
             }
         }
     }

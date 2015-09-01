@@ -23,32 +23,14 @@
             $What->setSuccessor($Why);
             $Why->setSuccessor($MostBasicStep);
 
-            // testing printing out what successor
-            echo "what successor is ";
-            $What->getSuccessor();
-            echo "<br>";
-
-            // testing printing out why successor
-            echo "why successor is ";
-            $Why->getSuccessor();
-            echo "<br>";
-
-            // testing printing out mbs successor
-            echo "MBS successor is ";
-            $MostBasicStep->getSuccessor();
-            echo "<br>";
 
             // Generate and process load requests
             $new_request = new Request($this->getCurrentRequest());
 
-            // call first concrete handler
-            $question_text = $Why->handleRequest($new_request);
+            // Call first concrete Handler
+            $question_text = $What->handleRequest($new_request);
 
-            // try getting data out of handler
-            // echo $question_text;
-
-            /* The problem lies in return values*/
-
+            // Get data out of the Handler
             return $question_text;
         }
     }
