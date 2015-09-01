@@ -1,9 +1,5 @@
 <?php
-/* Concrete Handler for a Question
-Will print out a question for now
-
-*/
-    class WhatProjectQuestionHandler extends Handler
+    class BasicStepHandler extends Handler
     {
         private $successor;
 
@@ -14,16 +10,20 @@ Will print out a question for now
 
         public function handleRequest($request)
         {
-            if ($request->getText() == "what") {
-                $question = "Can you think of a good name for your new project?";
+            // test several conditions here
+            // if we are on the first step
+            // if we are on the last step
+            // if we are in the middle step
+            if ($request->getText() == "basicStep") {
+                $question = "Try to think about anything that you might need to have finished before even beginning this project.";
 
                 // Make a new Page object to return the Twig template url
                 // and data to pass to it
-                $template_url = "question.html.twig";
+                $template_url = "prereqs.html.twig";
                 $data_for_twig = array(
                     'question' => $question,
                     'next_url' => '/coach/new_project',
-                    'input_parameter' => 'project_name'
+                    'input_parameter' => 'project_prereqs'
                 );
                 $new_page = new Page($template_url, $data_for_twig);
 

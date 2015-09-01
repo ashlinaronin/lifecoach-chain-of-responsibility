@@ -44,17 +44,5 @@
         return $app['twig']->render($page->getTemplateUrl(), $page->getData());
     });
 
-    // // Coach route for new project
-    // $app->get("/coach/new_habit/{page_id}", function($page_id) use ($app) {
-    //
-    //     return "Placeholder route for page {$page_id} in new project coach flow.";
-    // });
-    //
-    // // Coach route for existing project
-    // $app->get("/coach/habit/{page_id}", function($page_id) use ($app) {
-    //
-    //     return "Placeholder route for page {$page_id} in existing project coach flow.";
-    // });
-
     return $app;
 ?>
