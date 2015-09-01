@@ -3,7 +3,7 @@
 Will print out a question for now
 
 */
-    class WhatQuestionHandler extends Handler
+    class WhatProjectQuestionHandler extends Handler
     {
         private $successor;
 
@@ -15,15 +15,15 @@ Will print out a question for now
         public function handleRequest($request)
         {
             if ($request->getText() == "what") {
-                $question = "What is your new project?";
+                $question = "Can you think of a good name for your new project?";
 
                 // Make a new Page object to return the Twig template url
                 // and data to pass to it
                 $template_url = "question.html.twig";
                 $data_for_twig = array(
                     'question' => $question,
-                    'next_url' => '/thisisthenexturlfromwhathandler',
-                    'input_parameter' => 'this is the input parameter for form'
+                    'next_url' => '/coach/new_project',
+                    'input_parameter' => 'project_name'
                 );
                 $new_page = new Page($template_url, $data_for_twig);
 

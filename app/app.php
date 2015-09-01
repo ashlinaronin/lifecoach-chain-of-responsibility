@@ -3,15 +3,10 @@
     // DEPENDENCIES
     require_once __DIR__."/../vendor/autoload.php";
 
-    // CoR stuff
-    require_once __DIR__."/../src/CoR/Client.php";
-    require_once __DIR__."/../src/CoR/Handler.php";
-    require_once __DIR__."/../src/CoR/ChainRequest.php";
-    require_once __DIR__."/../src/CoR/Page.php";
-    require_once __DIR__."/../src/CoR/WhatQuestionHandler.php";
-    require_once __DIR__."/../src/CoR/WhyQuestionHandler.php";
-    require_once __DIR__."/../src/CoR/MostBasicStepHandler.php";
-    require_once __DIR__."/../src/CoR/SimpleQAHandler.php";
+    // require all of Chain of Responsibility stuff
+    foreach (glob(__DIR__."/../src/CoR/*.php") as $filename) {
+        require_once $filename;
+    }
 
 
     // no server for now
@@ -38,13 +33,12 @@
         // Make the new Client with the data from the form,
         // which will pass on the request to the appropriate handler
         // using the chain of responsibility.
-        var_dump($_POST['query']);
-        $new_request = new ChainRequest($_POST['query']);
-        $new_client = new Client($new_request);
+        var_dump($_POST['coach_chain']);
+        $new_request = new ChainRequest($_POST['coach_chain']);
+        $new_client = new NewProjectClient($new_request);
 
         // Handler will return a Page object
         $page = $new_client->processRequests();
-
 
         // Render data returned from the CoR as a Page object
         return $app['twig']->render($page->getTemplateUrl(), $page->getData());
