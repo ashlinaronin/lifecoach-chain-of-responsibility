@@ -10,6 +10,7 @@
     require_once __DIR__."/../src/CoR/WhatQuestionHandler.php";
     require_once __DIR__."/../src/CoR/WhyQuestionHandler.php";
     require_once __DIR__."/../src/CoR/MostBasicStepHandler.php";
+    require_once __DIR__."/../src/CoR/MostBasicStepHandler.php";
 
 
     // No DB yet

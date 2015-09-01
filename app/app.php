@@ -11,6 +11,7 @@
     require_once __DIR__."/../src/CoR/WhatQuestionHandler.php";
     require_once __DIR__."/../src/CoR/WhyQuestionHandler.php";
     require_once __DIR__."/../src/CoR/MostBasicStepHandler.php";
+    require_once __DIR__."/../src/CoR/SimpleQAHandler.php";
 
 
     // no server for now
@@ -33,15 +34,17 @@
         return $app['twig']->render('index.html.twig');
     });
 
-    $app->post("/coach_handler", function() use ($app) {
+    $app->post("/coach/new_project", function() use ($app) {
         // Make the new Client with the data from the form,
         // which will pass on the request to the appropriate handler
         // using the chain of responsibility.
+        var_dump($_POST['query']);
         $new_request = new ChainRequest($_POST['query']);
         $new_client = new Client($new_request);
 
         // Handler will return a Page object
         $page = $new_client->processRequests();
+
 
         // Render data returned from the CoR as a Page object
         return $app['twig']->render($page->getTemplateUrl(), $page->getData());

@@ -17,15 +17,24 @@
         public function processRequests()
         {
             // Instantiate Concrete Handlers and set successors for each except the last one
+            // Trying with abstracted simple QA
+            // $what_q = "What is your new project's name?";
+            // $what = new SimpleQAHandler($what_q, 'name');
+            //
+            // $why_q = "Why do you want to work on it?";
+            // $why = new SimpleQAHandler($why_q, 'motivation');
+            //
+            // $mbs_q = "What is the most basic step?";
+            // $mbs = new SimpleQAHandler($mbs_q, 'step1');
+
+
             $what = new WhatQuestionHandler();
             $why = new WhyQuestionHandler();
-            $mostBasicStep = new MostBasicStepHandler();
-            $what->setSuccessor($why);
-            $why->setSuccessor($mostBasicStep);
+            $mbs = new MostBasicStepHandler();
 
-            // Right now don't make a new Request object, need to do it when calling a client
-            // // Generate and process load requests
-            // $new_request = new Request($this->getCurrentRequest());
+            // Set up chain of successors
+            $what->setSuccessor($why);
+            $why->setSuccessor($mbs);
 
             // Call first concrete Handler
             // It will recursively call other Handlers as necessary
