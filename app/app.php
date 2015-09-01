@@ -40,10 +40,7 @@
         $new_client = new Client($_POST['query']);
         $returned_text = $new_client->processRequests();
 
-
-        // How do we get data out of the What/Why/MBSHandler into Silex/Twig?
-
-
+        // Render data returned from the CoR
         return $app['twig']->render('question.html.twig', array(
             'question' => $returned_text
         ));
